@@ -60,8 +60,9 @@ def main(interval_val, graph_title):
     ani = FuncAnimation(
         fig,
         updateValues,
-        fargs=[axs, x_val, index, current, voltage, power],
+        fargs=(axs, x_val, index, current, voltage, power),
         interval=interval_val,
+        cache_frame_data=False,
     )
     plt.show()
 
