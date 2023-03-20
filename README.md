@@ -45,3 +45,6 @@ intervalValue = 500 # Change the interval here
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details. 
 You have the right to use, copy, modify, distribute the software and use, either for commercial or non-commercial purposes
 
+## Credits
+This project was created by **Aamir Mohamed Thahir Ali**. Special thanks to **Kush
+Makkapati** for their guidance.
