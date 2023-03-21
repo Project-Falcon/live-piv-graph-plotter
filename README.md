@@ -14,15 +14,14 @@ You can install these packages using pip: <br>
 `pip install pandas matplotlib`<br>
 Once the packages are installed, run the following 
 command in your terminal: <br>
-`python drone_sensor_visualization.py`
+`python ivplot.py`
 
 ## How to Use the Project
 To use the project, you need to input your current values to the `current` array and voltage
 values to the `voltage` array in the `updateValues` function in
-**drone_sensor_visualization.py**. Your values can be entries in a .csv file or can be derived
+**ivplot.py**. Your values can be entries in a .csv file or can be derived
 from APIs of your choice. <br>
 ```python
-pythonCopy code
 def updateValues(i):
 # Here's where you can input your sensor values
  x_val.append(next(index))
@@ -37,8 +36,23 @@ You can also customize the time interval between each update by changing the
 the current and voltage in dynamic linear laterally-scrolling plots. <br>
 
 ```python
-pythonCopy code
 intervalValue = 500 # Change the interval here
+```
+A correct implementation of appending actual values to the appropriate **current** and **voltage** arrays is shown in `redis_ivplot.py` as depicted below:
+```python
+# IMPORTING ACTUAL VALUES FROM REDIS DATABASE
+telemetry_data = r.hgetall('telemetry')
+
+new_current = telemetry_data.get('Battery current', 0)
+new_current = float(new_current[:len(new_current)-1])
+
+new_voltage = telemetry_data.get('Battery voltage', 0)
+new_voltage = float(new_voltage[:len(new_voltage)-1])
+# APPEND VALUES TO THEIR RESPECTIVE ARRAYS
+
+current.append(new_current)
+voltage.append(new_voltage)
+power.append(current[-1] * voltage[-1])
 ```
 
 ## License
@@ -46,5 +60,5 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 You have the right to use, copy, modify, distribute the software and use, either for commercial or non-commercial purposes
 
 ## Credits
-This project was created by **Aamir Mohamed Thahir Ali**. Special thanks to **Kush
-Makkapati** for their guidance.
+This project was created by **Aamir Mohamed Thahir Ali** [@aamiral1](https://www.github.com/aamiral1). Special thanks to **Kush
+Makkapati** [@1Blademaster](https://github.com/1Blademaster/) for their guidance.

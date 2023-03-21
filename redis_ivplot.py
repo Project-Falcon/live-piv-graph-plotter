@@ -12,7 +12,8 @@ import redis
 def updateValues(_, axs, x_val, index, current, voltage, power, data_size=10):
     # Generate random values
     x_val.append(next(index))
-    
+
+    # IMPORTING ACTUAL VALUES - START
     telemetry_data = r.hgetall('telemetry')
 
     new_current = telemetry_data.get('Battery current', 0)
@@ -20,6 +21,7 @@ def updateValues(_, axs, x_val, index, current, voltage, power, data_size=10):
 
     new_voltage = telemetry_data.get('Battery voltage', 0)
     new_voltage = float(new_voltage[:len(new_voltage)-1])
+    # IMPORTING ACTUAL VALUES - END
 
     current.append(new_current)
     voltage.append(new_voltage)
