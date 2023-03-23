@@ -22,7 +22,7 @@ values to the `voltage` array in the `updateValues` function in
 **ivplot.py**. Your values can be entries in a .csv file or can be derived
 from APIs of your choice. <br>
 ```python
-def updateValues(i):
+def updateValues(_, axs, x_val, index, current, voltage, power, data_size=10):
 # Here's where you can input your sensor values
  x_val.append(next(index))
  current.append(<input your current values here>)
